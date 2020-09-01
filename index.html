@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2A4365" />
+    <title>Page preloader Labwork</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="min-h-screen flex flex-col items-center bg-blue-900 text-gray-200">
+
+    <div id="page-preloader"
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:99999;background: fixed #2A4365 url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' style='margin:auto;background:%232A4365;display:block;' width='200px' height='200px' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'%3E%3Cg transform='translate(25 50)'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23EDF2F7' transform='scale(0.57841 0.57841)'%3E%3CanimateTransform attributeName='transform' type='scale' begin='-0.3333333333333333s' calcMode='spline' keySplines='0.3 0 0.7 1;0.3 0 0.7 1' values='0;1;0' keyTimes='0;0.5;1' dur='1s' repeatCount='indefinite'%3E%3C/animateTransform%3E%3C/circle%3E%3C/g%3E%3Cg transform='translate(50 50)'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23EDF2F7' transform='scale(0.960498 0.960498)'%3E%3CanimateTransform attributeName='transform' type='scale' begin='-0.16666666666666666s' calcMode='spline' keySplines='0.3 0 0.7 1;0.3 0 0.7 1' values='0;1;0' keyTimes='0;0.5;1' dur='1s' repeatCount='indefinite'%3E%3C/animateTransform%3E%3C/circle%3E%3C/g%3E%3Cg transform='translate(75 50)'%3E%3Ccircle cx='0' cy='0' r='6' fill='%23EDF2F7' transform='scale(0.86427 0.86427)'%3E%3CanimateTransform attributeName='transform' type='scale' begin='0s' calcMode='spline' keySplines='0.3 0 0.7 1;0.3 0 0.7 1' values='0;1;0' keyTimes='0;0.5;1' dur='1s' repeatCount='indefinite'%3E%3C/animateTransform%3E%3C/circle%3E%3C/g%3E%3C/svg%3E&quot;) center center no-repeat;transition: all 250ms ease 250ms;">
+        <!-- background image partially urlencoded by "URL-encoder for SVG" -->
+    </div>
+    <noscript>
+        <style>
+            #page-preloader {
+                display: none; /* in case we don't have JS */
+            }
+        </style>
+    </noscript>
+
+    <header class="w-full h-12 bg-blue-800 flex items-center justify-center">
+        Header
+    </header>
+
+    <main class="max-w-screen-lg px-3 md:px-12 lg:px-32 flex-grow flex flex-col items-center justify-center">
+        <h1 class="text-xl md:text-2xl lg:text-4xl my-3">Page content</h1>
+        <img src="https://placeimg.com/640/480/any" alt="Random 640x480 image from placeimg.com" title="Random 640x480 image from placeimg.com" class="block w-full h-auto opacity-75 border-2 border-blue-200 p-1 rounded-full">
+        <form action="" method="get" onsubmit="myButton.disabled=true">
+            <button type="submit" name="myButton" class="my-3 px-5 py-3 text-8 md:text-10 lg:text-12 bg-blue-200 text-blue-800 rounded-lg" onclick="this.innerText='Reloading...';console.log('Button clicked')">Click me to reload page</button>
+        </form>
+    </main>
+
+    <footer class="w-full h-12 bg-blue-800 flex items-center justify-center">
+        Footer
+    </footer>
+
+    <script type="text/javascript">
+        ; (function (document) {
+            document.addEventListener("DOMContentLoaded", function (event) { // enough for modern browsers
+                var page_preloader = document.getElementById('page-preloader');
+                if (page_preloader) {
+                    page_preloader.style.opacity = 0;
+                    setTimeout(function () { // for animation
+                        if (page_preloader) page_preloader.remove();
+                    }, 1000);
+                }
+            });
+        }(document));
+    </script>
+</body>
+
+</html>
